@@ -1,32 +1,113 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hr">
 <head>
-    <meta charset="UTF-8">
-    <title>Listić</title>
+  <meta charset="UTF-8">
+  <title>Listić</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      margin: 0;
+      background: #f2f4f8;
+      color: #222;
+    }
+
+    .main-wrapper {
+      max-width: 600px;
+      margin: 60px auto 0 auto;
+      padding: 0 20px;
+    }
+
+    .box {
+      background: #fff;
+      border: 1px solid #ddd;
+      padding: 24px;
+      border-radius: 10px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    }
+
+    h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      text-align: center;
+      font-size: 44px;
+      letter-spacing: 1px;
+      margin-top: 0;
+      margin-bottom: 18px;
+      color: #1a73e8;
+    }
+
+    h2 {
+      font-size: 18px;
+      margin: 18px 0 10px;
+      color: #333;
+      font-weight: 600;
+    }
+
+    p {
+      font-size: 15px;
+      line-height: 1.5;
+      margin: 8px 0;
+    }
+
+    .qr-wrap {
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .qr-wrap img {
+      max-width: 220px;
+      height: auto;
+      border: 1px solid #ddd;
+      padding: 6px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 20px;
+      text-decoration: none;
+      color: #1a73e8;
+      font-weight: 500;
+      text-align: center;
+      width: 100%;
+    }
+
+    .back-link:hover { text-decoration: underline; }
+  </style>
 </head>
+
 <body>
-    <h1>Listić ID: <%= ticket.id %></h1>
+  <div class="main-wrapper">
+    <div class="box">
+      
+      <h1>Listić <%= ticket.id %></h1>
 
-    <p>Osobna iskaznica: <%= ticket.personal_id %></p>
-    <p>Brojevi: <%= ticket.numbers.join(', ') %></p>
+      <p><strong>Osobna iskaznica:</strong> <%= ticket.personal_id %></p>
+      <p><strong>Brojevi:</strong> <%= ticket.numbers.join(', ') %></p>
 
-    <% if (drawn_numbers && drawn_numbers.length > 0) { %>
-        <h2>Izvučeni brojevi u kolu:</h2>
+      <% if (drawn_numbers && drawn_numbers.length > 0) { %>
+        <h2>Izvučeni brojevi</h2>
         <p><%= drawn_numbers.join(', ') %></p>
-    <% } else { %>
-        <p>Brojevi još nisu izvučeni.</p>
-    <% } %>
+      <% } else { %>
+        <p><em>Brojevi još nisu izvučeni.</em></p>
+      <% } %>
 
-    <br>
-    <h2>QR kôd za ovaj listić</h2>
-<img src="/ticket/<%= ticket.id %>/qr.png" alt="QR kod" style="max-width:220px;height:auto;border:1px solid #ddd;padding:6px;border-radius:8px">
+      <h2>QR kod listića</h2>
+      <div class="qr-wrap">
+        <img src="/ticket/<%= ticket.id %>/qr.png" alt="QR kod">
+      </div>
 
-<p>
-  <a href="/ticket/<%= ticket.id %>/qr.png" download="ticket-<%= ticket.id %>-qr.png">
-    Preuzmi QR kao PNG
-  </a>
-</p>
+      <p style="text-align:center; margin-top:10px;">
+        <a href="/ticket/<%= ticket.id %>/qr.png" download="ticket-<%= ticket.id %>-qr.png">
+          Preuzmi QR kao PNG
+        </a>
+      </p>
 
-    <a href="/">Povratak na početnu</a>
+      <a class="back-link" href="/">⟵ Povratak na početnu</a>
+    </div>
+  </div>
 </body>
 </html>

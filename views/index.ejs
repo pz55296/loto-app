@@ -1,27 +1,90 @@
 <!DOCTYPE html>
 <html lang="hr">
 <head>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
   <meta charset="UTF-8" />
   <title>Loto - Početna</title>
   <style>
-    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; padding: 20px; }
-    .box { border: 1px solid #ddd; padding: 16px; border-radius: 10px; max-width: 700px; }
-    .muted { color: #666; }
-    a.button { display:inline-block; padding:8px 12px; border-radius:8px; border:1px solid #333; text-decoration:none; }
+body {
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  margin: 0;
+  color: #222;
+  background: #e8f1ff;
+}
+
+.header-login {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+  padding: 20px;
+  font-size: 14px;
+  color: #444;
+}
+
+.main-wrapper {
+  max-width: 700px;
+  margin: 60px auto 0 auto;  
+}
+
+.box {
+  background: white;
+  border: 1px solid #ddd;
+  padding: 22px;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+}
+
+a.button {
+  display:inline-block;
+  padding:8px 14px;
+  border-radius:8px;
+  text-decoration:none;
+  background:#1a73e8;
+  color:white;
+  border:1px solid #0f5fd1;
+  font-size:14px;
+  font-weight:500;
+  transition: 0.18s ease-in-out;
+}
+
+a.button:hover {
+  background:#0f5fd1;
+}
+
+.muted {
+  color: #666;
+}
+.box h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  text-align: center;
+  font-size: 48px;
+  letter-spacing: 1px;
+  margin-top: 0;
+  margin-bottom: 10px;
+  color: #1a73e8; 
+}
+
+
+
   </style>
 </head>
 <body>
 
-  <% if (currentUser) { %>
-    <p>Prijavljen: <strong><%= currentUser.name || currentUser.email %></strong>
-      | <a href="/logout">Odjava</a>
-    </p>
-  <% } else { %>
-    <p><a class="button" href="/login">Prijava</a></p>
-  <% } %>
+  <div class="header-login">
+    <% if (currentUser) { %>
+      <span>Prijavljen: <strong><%= currentUser.name || currentUser.email %></strong></span>
+      <a class="button" href="/logout">Odjava</a>
+    <% } else { %>
+      <a class="button" href="/login">Prijava</a>
+    <% } %>
+  </div>
 
-  <div class="box">
-    <h1>Dobrodošli u Loto aplikaciju</h1>
+
+  <div class="main-wrapper">
+    <div class="box">
+    <h1>Loto 6/45</h1>
 
     <% if (round) { %>
       <p><span class="muted">Trenutno kolo:</span> <code><%= round.id %></code></p>
