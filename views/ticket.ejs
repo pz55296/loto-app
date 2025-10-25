@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Listić</title>
+</head>
+<body>
+    <h1>Listić ID: <%= ticket.id %></h1>
+
+    <p>Osobna iskaznica: <%= ticket.personal_id %></p>
+    <p>Brojevi: <%= ticket.numbers.join(', ') %></p>
+
+    <% if (drawn_numbers && drawn_numbers.length > 0) { %>
+        <h2>Izvučeni brojevi u kolu:</h2>
+        <p><%= drawn_numbers.join(', ') %></p>
+    <% } else { %>
+        <p>Brojevi još nisu izvučeni.</p>
+    <% } %>
+
+    <br>
+    <h2>QR kôd za ovaj listić</h2>
+<img src="/ticket/<%= ticket.id %>/qr.png" alt="QR kod" style="max-width:220px;height:auto;border:1px solid #ddd;padding:6px;border-radius:8px">
+
+<p>
+  <a href="/ticket/<%= ticket.id %>/qr.png" download="ticket-<%= ticket.id %>-qr.png">
+    Preuzmi QR kao PNG
+  </a>
+</p>
+
+    <a href="/">Povratak na početnu</a>
+</body>
+</html>

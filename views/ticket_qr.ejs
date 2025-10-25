@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vaš QR kod</title>
+</head>
+<body>
+    <h1>Uspješno uplaćen listić!</h1>
+
+    <p>Vaš listić ID: <%= ticket.id %></p>
+    <p>Brojevi: <%= ticket.numbers.join(', ') %></p>
+
+    <h2>QR kod za pregled listića:</h2>
+    <img src="data:image/png;base64,<%= qrData %>" alt="QR kod">
+
+    <br><br>
+    <a href="/">Povratak na početnu</a>
+</body>
+</html>

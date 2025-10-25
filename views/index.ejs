@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Loto - Početna</title>
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; padding: 20px; }
+    .box { border: 1px solid #ddd; padding: 16px; border-radius: 10px; max-width: 700px; }
+    .muted { color: #666; }
+    a.button { display:inline-block; padding:8px 12px; border-radius:8px; border:1px solid #333; text-decoration:none; }
+  </style>
+</head>
+<body>
+
+  <% if (currentUser) { %>
+    <p>Prijavljen: <strong><%= currentUser.name || currentUser.email %></strong>
+      | <a href="/logout">Odjava</a>
+    </p>
+  <% } else { %>
+    <p><a class="button" href="/login">Prijava</a></p>
+  <% } %>
+
+  <div class="box">
+    <h1>Dobrodošli u Loto aplikaciju</h1>
+
+    <% if (round) { %>
+      <p><span class="muted">Trenutno kolo:</span> <code><%= round.id %></code></p>
+      <p><span class="muted">Broj uplaćenih listića:</span> <strong><%= ticketsCount %></strong></p>
+
+      <% if (round.active) { %>
+        <% if (currentUser) { %>
+          <p><a class="button" href="/tickets/new">Uplati listić</a></p>
+        <% } else { %>
+          <p class="muted">Za uplatu listića potrebno je <a href="/login">prijaviti se</a>.</p>
+        <% } %>
+      <% } else { %>
+        <p>Uplate su trenutno zatvorene.</p>
+        <% if (round.drawn_numbers && round.drawn_numbers.length > 0) { %>
+          <p><span class="muted">Izvučeni brojevi:</span> <strong><%= round.drawn_numbers.join(', ') %></strong></p>
+        <% } else { %>
+          <p class="muted">Izvučeni brojevi još nisu objavljeni.</p>
+        <% } %>
+      <% } %>
+
+    <% } else { %>
+      <p>Nema aktivnog kola.</p>
+    <% } %>
+  </div>
+
+</body>
+</html>

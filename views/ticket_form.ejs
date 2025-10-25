@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Uplata listića</title>
+</head>
+<body>
+    <h1>Uplata Loto 6/45 listića</h1>
+
+    <form action="/tickets" method="POST">
+        <label for="personal_id">Osobna iskaznica / putovnica:</label><br>
+        <input type="text" name="personal_id" id="personal_id" maxlength="20" required><br><br>
+
+        <label for="numbers">Unesite 6-10 brojeva (1-45), odvojene zarezom:</label><br>
+        <input type="text" name="numbers" id="numbers" placeholder="npr. 5,12,23,34,40,45" required><br><br>
+
+        <input type="hidden" name="roundId" value="<%= roundId %>">
+
+        <button type="submit">Pošalji listić</button>
+    </form>
+
+    <a href="/">Povratak na početnu</a>
+</body>
+</html>
